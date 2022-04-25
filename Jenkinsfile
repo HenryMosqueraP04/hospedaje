@@ -57,7 +57,7 @@ pipeline {
 
     stage('Static Code Analysis') {
         steps{
-            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:hospedaje-henry.mosquera',
+            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:hospedaje.henry.mosquera',
             sonarName:'''"CeibaADN-Hospedaje(henry.mosquera)"''',
             sonarPathProperties:'./sonar-project.properties')
         }
