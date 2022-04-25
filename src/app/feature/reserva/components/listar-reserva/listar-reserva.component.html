@@ -1,0 +1,62 @@
+<div class="container-fluid">
+
+    <div class="alert alert-info alert-dismissible fade show my-2 text-center" role="alert" *ngIf="tcrm">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item flex-fill">
+                {{tituloTCRM}} <strong>{{tcrm.value | currency}} {{tcrm.unit}}</strong>
+                    
+            </li>
+            <li class="list-group-item">
+                <strong>{{tcrm.validityTo | date :'dd-MM-YYYY HH:mm:ss'}}</strong>
+            </li>
+            <li class="list-group-item">
+                <strong>{{tcrm.validityFrom | date :'dd-MM-YYYY HH:mm:ss'}}</strong>
+            </li>
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card shadow my-5 text-center ">
+                <div class="card-header ">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-stripped  align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <td *ngFor="let e of encabezadoTablaReserva">{{e}}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let r of reservas; index as i">
+                                    <td>{{r.id}}</td>
+                                    <td>{{r.nombreUsuario}}</td>
+                                    <td>{{r.nombreHabitacion}}</td>
+                                    <td>{{r.nombreTipoHabitacion}}</td>
+                                    <td>{{r.nombreTipoPago}}</td>
+                                    <td>{{r.valor | currency}}</td>
+                                    <td>{{r.fechaInicio | date:'dd-MM-y HH:mm:ss'}}</td>
+                                    <td>{{r.fechaFin | date:'dd-MM-y HH:mm:ss'}}</td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Opciones reserva">
+                                            <button class="btn btn-danger" aria-label="Eliminar reserva"
+                                                (click)="onClickEliminarReserva(r, i)" [id]="'botonEliminarReserva'+i">Eliminar</button>
+                                            <a class="btn btn-primary" aria-label="Actualizar reserva"
+                                                [routerLink]="['/reserva/actualizar', r.id]" [id]="'linkActualizarReserva'+i">Actualizar</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-success my-2" [routerLink]="['/reserva/crear']" id="linkCrearReserva">Agregar reserva</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

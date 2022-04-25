@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10">
+            <form [formGroup]="reservaForm" (ngSubmit)="onSubmitCrearReserva($event)" id="formCrearReserva">
+                <div class="card my-5">
+                    <div class="card-header text-center">
+                        <h1>{{titulo}}</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input formControlName="fechaInicio" type="date" id="fechaInicio"
+                                        placeholder="Fecha de inicio"
+                                        [class]="(reservaForm.controls.fechaInicio.valid ? 'form-control is-valid':'form-control is-invalid')"
+                                        required>
+                                    <label class="responsive" for="fechaInicio">Fecha de inicio</label>
+                                    <div *ngIf="reservaForm.controls.fechaInicio.hasError('required')"
+                                        class="invalid-feedback">
+                                        La fecha de inicio es requerida
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-floating mb-3">
+                                    <input formControlName="horaInicio" type="time" id="horaInicio"
+                                        [class]="(reservaForm.controls.horaInicio.valid ? 'form-control is-valid':'form-control is-invalid')"
+                                        placeholder="Hora de inicio" required>
+                                    <label class="responsive" for="horaInicio">Hora de inicio</label>
+                                    <div *ngIf="reservaForm.controls.horaInicio.hasError('required')"
+                                        class="invalid-feedback">
+                                        La hora de inicio es requerida
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-floating mb-3">
+                                    <input formControlName="hora" type="number" min="1" class="form-control" id="hora"
+                                        [class]="(reservaForm.controls.hora.valid ? 'form-control is-valid':'form-control is-invalid')"
+                                        required>
+                                    <label class="responsive" for="hora">Ocupación (H)</label>
+                                    <div *ngIf="reservaForm.controls.hora.hasError('required') || reservaForm.controls.hora.hasError('min')"
+                                        class="invalid-feedback">
+                                        Las horas de ocupación son requeridas y minimo debe ser 1
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <select formControlName="habitacionId" class="form-select" id="habitacionId"
+                                        [class]="(reservaForm.controls.habitacionId.valid ? 'form-control is-valid':'form-control is-invalid')"
+                                        aria-label="Seleccionar habitacion" required>
+                                        <option value=""></option>
+                                        <option *ngFor="let h of habitaciones" [ngValue]="h.id">{{h.nombre}}</option>
+                                    </select>
+                                    <label class="responsive" for="habitacionId">Habitaciones</label>
+                                    <div *ngIf="reservaForm.controls.habitacionId.hasError('required')"
+                                        class="invalid-feedback">
+                                        La habitación es requerida
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <select formControlName="tipoPagoId" class="form-select" id="tipoPagoId"
+                                        [class]="(reservaForm.controls.tipoPagoId.valid ? 'form-control is-valid':'form-control is-invalid')"
+                                        aria-label="Seleccionar tipo de pago" required>
+                                        <option value=""></option>
+                                        <option *ngFor="let tp of tipoPagos" [ngValue]="tp.id">{{tp.nombre}}</option>
+                                    </select>
+                                    <label class="responsive" for="tipoPagoId">Tipos de pago</label>
+                                    <div *ngIf="reservaForm.controls.tipoPagoId.hasError('required')"
+                                        class="invalid-feedback">
+                                        El tipo de pago es requerido
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <select formControlName="usuarioId" class="form-select" id="usuarioId"
+                                        [class]="(reservaForm.controls.usuarioId.valid ? 'form-control is-valid':'form-control is-invalid')"
+                                        aria-label="Seleccionar usuario" required>
+                                        <option value=""></option>
+                                        <option *ngFor="let u of usuarios" [ngValue]="u.id">{{u.nombreCompleto}}</option>
+                                    </select>
+                                    <label class="responsive" for="usuarioId">usuario</label>
+                                    <div *ngIf="reservaForm.controls.usuarioId.hasError('required')"
+                                        class="invalid-feedback">
+                                        El usuario es requerido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center" *ngIf="reservaForm.valid">
+                        <button class="btn btn-success" type="submit" aria-label="Crear reserva">Crear reserva</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

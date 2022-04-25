@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-center">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngFor="let i of items">
+          <a class="nav-link" [routerLink]="i.url" [id]="i.nombre">{{i.nombre}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+

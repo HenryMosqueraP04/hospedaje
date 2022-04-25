@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h1 class="modal-title">{{titulo}}</h1>
+    <button type="button" class="btn btn-primary " aria-label="Close" (click)="onClickClose(false)">Cerrar</button>
+</div>
+<div class="modal-body text-center">
+    <h2 class="py-3">{{mensaje}}</h2>
+</div>
+<div class="modal-footer text-center">
+    <button type="button" class="btn btn-primary" (click)="onClickClose(true)" id="btnAceptarCrearReserva">Aceptar</button>
+    <button type="button" class="btn btn-primary" (click)="onClickClose(false)" >Cancelar</button>
+</div>
