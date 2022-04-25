@@ -13,10 +13,20 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK11_Centos' //Verisión preinstalada en la Configuración del Master
+    jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
   }
+/*	Versiones disponibles
+      JDK8_Mac
+      JDK6_Centos
+      JDK7_Centos
+      JDK8_Centos
+      JDK10_Centos
+      JDK11_Centos
+      JDK13_Centos
+      JDK14_Centos
+*/
 
-
+  //Aquí comienzan los “items” del Pipeline
   stages{
     stage('Checkout') {
       steps{
@@ -28,7 +38,7 @@ pipeline {
     stage('NPM Install') {
       steps {
         echo "------------>Installing<------------"
-        sh 'npm install --force'
+        sh 'npm install'
       }
     }
 
@@ -47,10 +57,9 @@ pipeline {
 
     stage('Static Code Analysis') {
         steps{
-            sonarqubeMasQualityGatesP(
-            sonarKey:'co.com.ceiba.adn:hospedaje.henry.mosquera',
+            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:hospedaje-henry.mosquera',
             sonarName:'''"CeibaADN-Hospedaje(henry.mosquera)"''',
-            sonarPathProperties:'./sonar-project.properties'
+            sonarPathProperties:'./sonar-project.properties')
         }
     }
 
